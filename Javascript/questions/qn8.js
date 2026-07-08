@@ -23,3 +23,28 @@ function* genFunc() {
     yield 4;
 }
 genFunc(); // Returns Object [Generator] {}
+
+//The generator object consists of a method called next(), this method when called, executes the code until the nearest yield statement, and returns the yield value.
+
+//For example, if we run the next() method on the above code:
+genFunc().next(); // Returns {value: 3, done:false}
+
+//As one can see the next method returns an object consisting of a value and done properties.  Value property represents the yielded value. Done property tells us whether the function code is finished or not. (Returns true if finished).
+
+//Generator functions are used to return iterators. Let’s see an example where an iterator is returned:
+
+function* iteratorFunc() {
+    let count = 0;
+    for (let i = 0; i < 2; i++) {
+        count++;
+        yield i;
+    }
+    return count;
+}
+
+let iterator = iteratorFunc();
+console.log(iterator.next()); // {value:0,done:false}
+console.log(iterator.next()); // {value:1,done:false}
+console.log(iterator.next()); // {value:2,done:true}
+
+//As you can see in the code above, the last line returns done:true, since the code reaches the return statement.
