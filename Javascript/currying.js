@@ -91,3 +91,74 @@ for (let i = 0; i < 2; i++) {
 }
 
 console.log(i); // Gives reference error since i cannot be accessed outside of the for loop block
+
+//Scope Chain: JavaScript engine also uses Scope to find variables. Let’s understand that using an example:
+var y = 24;
+
+function favFunction() {
+    var x = 667;
+    var anotherFavFunction = function () {
+        console.log(x); // Does not find x inside anotherFavFunction, so looks for variable inside favFunction, outputs 667
+    }
+
+    var yetAnotherFavFunction = function () {
+        console.log(y); // Does not find y inside yetAnotherFavFunction, so looks for variable inside favFunction and does not find it, so looks for variable in global scope, finds it and outputs 24
+    }
+
+    anotherFavFunction();
+    yetAnotherFavFunction();
+}
+favFunction();
+
+//As you can see in the code above, if the javascript engine does not find the variable in local scope, it tries to check for the variable in the outer scope. If the variable does not exist in the outer scope, it tries to find the variable in the global scope.
+//If the variable is not found in the global space as well, a reference error is thrown
+
+// Explain Closures in JavaScript.
+
+//Closures are an ability of a function to remember the variables and functions that are declared in its outer scope.
+
+var Person = function (pName) {
+    var name = pName;
+
+    this.getName = function () {
+        return name;
+    }
+}
+
+var person = new Person("Neelesh");
+console.log(person.getName());
+
+//Let’s understand closures by example:
+
+function randomFunc() {
+    var obj1 = { name: "Vivian", age: 45 };
+
+    return function () {
+        console.log(obj1.name + " is " + "awesome"); // Has access to obj1 even when the randomFunc function is executed
+
+    }
+}
+
+var initialiseClosure = randomFunc(); // Returns a function
+
+initialiseClosure();
+
+//Let’s understand the code above,
+
+//The function randomFunc() gets executed and returns a function when we assign it to a variable:
+
+var initialiseClosure = randomFunc();
+
+//The returned function is then executed when we invoke initialiseClosure:
+
+initialiseClosure();
+
+//The line of code above outputs “Vivian is awesome” and this is possible because of closure.
+
+console.log(obj1.name + " is " + "awesome");
+
+//When the function randomFunc() runs, it seems that the returning function is using the variable obj1 inside it:
+
+//Therefore randomFunc(), instead of destroying the value of obj1 after execution, saves the value in the memory for further reference. This is the reason why the returning function is able to use the variable declared in the outer scope even after the function is already executed.
+
+//This ability of a function to store a variable for further reference even after it is executed is called Closure
