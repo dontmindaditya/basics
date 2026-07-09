@@ -38,3 +38,9 @@ class Student{
 let student2 = new Student("Garry", 673, "7th", "C");
 student2.getDetails();
 // Returns Name: Garry, Roll no:673, Grade: 7th, Section:C
+
+//Key points to remember about classes:
+
+    //Unlike functions, classes are not hoisted. A class cannot be used before it is declared.
+    //A class can inherit properties and methods from other classes by using the extend keyword.
+    //All the syntaxes inside the class must follow the strict mode(‘use strict’) of javascript. An error will be thrown if the strict mode rules are not followed
