@@ -1,0 +1,1 @@
+// How does the JS engine optimize code at a high level?
