@@ -1,0 +1,3 @@
+//Is JavaScript a pass-by-reference or pass-by-value language?
+
+//Technically, JavaScript is always a pass-by-value language.The confusion stems from what that value is. When you pass a primitive type (like a number or string), the value is the data itself. When you pass an object (or array), the value is a copy of the reference (the memory address) pointing to that object. Computer scientists often call this behavior "pass-by-sharing".
